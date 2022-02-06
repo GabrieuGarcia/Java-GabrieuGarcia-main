@@ -1,6 +1,6 @@
-package org.twitterApp.exceptions;
+package org.twitterApp.exceptions.errors;
 
-public class TwitterAuthenticationException extends Exception {
+public class TwitterAuthenticationException extends RuntimeException {
 
 	public TwitterAuthenticationException() {
 		super();

@@ -1,0 +1,13 @@
+/Users/administrador/Desktop/Gabriel/Code/Tests/Java-GabrieuGarcia-main/src/main/java/org/twitterApp/TwitterApp.java
+/Users/administrador/Desktop/Gabriel/Code/Tests/Java-GabrieuGarcia-main/src/main/java/org/twitterApp/dto/UserDto.java
+/Users/administrador/Desktop/Gabriel/Code/Tests/Java-GabrieuGarcia-main/src/main/java/org/twitterApp/model/User.java
+/Users/administrador/Desktop/Gabriel/Code/Tests/Java-GabrieuGarcia-main/src/main/java/org/twitterApp/exceptions/TwitterAuthenticationException.java
+/Users/administrador/Desktop/Gabriel/Code/Tests/Java-GabrieuGarcia-main/src/main/java/org/twitterApp/consumer/impl/TwitterApiConsumerImpl.java
+/Users/administrador/Desktop/Gabriel/Code/Tests/Java-GabrieuGarcia-main/src/main/java/org/twitterApp/consumer/TwitterApiConsumer.java
+/Users/administrador/Desktop/Gabriel/Code/Tests/Java-GabrieuGarcia-main/src/main/java/org/twitterApp/controller/TwitterAPIController.java
+/Users/administrador/Desktop/Gabriel/Code/Tests/Java-GabrieuGarcia-main/src/main/java/org/twitterApp/config/Configuration.java
+/Users/administrador/Desktop/Gabriel/Code/Tests/Java-GabrieuGarcia-main/src/main/java/org/twitterApp/dto/TweetDto.java
+/Users/administrador/Desktop/Gabriel/Code/Tests/Java-GabrieuGarcia-main/src/main/java/org/twitterApp/service/TwitterApiService.java
+/Users/administrador/Desktop/Gabriel/Code/Tests/Java-GabrieuGarcia-main/src/main/java/org/twitterApp/authentication/TwitterAuthenticator.java
+/Users/administrador/Desktop/Gabriel/Code/Tests/Java-GabrieuGarcia-main/src/main/java/org/twitterApp/model/Tweet.java
+/Users/administrador/Desktop/Gabriel/Code/Tests/Java-GabrieuGarcia-main/src/main/java/org/twitterApp/service/impl/TwitterApiServiceImpl.java
