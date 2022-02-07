@@ -1,10 +1,6 @@
 package org.twitterApp.exceptions.errors;
 
-/**
- * Class responsible for throwing the exception details of tweet no founds
- * @author Gabriel Fernandes Garcia
- */
-public class TweetNotFoundDetails {
+public class TweetConversionDetails {
 
     private String title;
     private int status;
@@ -12,7 +8,7 @@ public class TweetNotFoundDetails {
     private long timestamp;
     private String message;
 
-    private TweetNotFoundDetails() {
+    private TweetConversionDetails() {
     }
 
     public String getTitle() {
@@ -75,14 +71,15 @@ public class TweetNotFoundDetails {
             return this;
         }
 
-        public TweetNotFoundDetails build() {
-            TweetNotFoundDetails tweetNotFoundDetails = new TweetNotFoundDetails();
-            tweetNotFoundDetails.detail = this.detail;
-            tweetNotFoundDetails.title = this.title;
-            tweetNotFoundDetails.timestamp = this.timestamp;
-            tweetNotFoundDetails.status = this.status;
-            tweetNotFoundDetails.message = this.message;
-            return tweetNotFoundDetails;
+        public TweetConversionDetails build() {
+            TweetConversionDetails tweetConversionDetails = new TweetConversionDetails();
+            tweetConversionDetails.detail = this.detail;
+            tweetConversionDetails.title = this.title;
+            tweetConversionDetails.timestamp = this.timestamp;
+            tweetConversionDetails.status = this.status;
+            tweetConversionDetails.message = this.message;
+            return tweetConversionDetails;
         }
     }
+
 }

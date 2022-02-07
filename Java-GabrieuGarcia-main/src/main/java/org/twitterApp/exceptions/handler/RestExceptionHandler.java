@@ -4,8 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.twitterApp.exceptions.errors.TweetNotFoundDetails;
-import org.twitterApp.exceptions.errors.TweetNotFoundException;
+import org.twitterApp.exceptions.errors.*;
 
 import java.util.Date;
 
@@ -29,6 +28,23 @@ public class RestExceptionHandler {
                 .status(HttpStatus.NOT_FOUND.value())
                 .detail(tweetNotFoundException.getMessage())
                 .message(tweetNotFoundException.getClass().getName())
+                .build();
+        return new ResponseEntity<>(details, HttpStatus.NOT_FOUND);
+    }
+
+    /**
+     * Method Responsible for the exceptions regarding of null input.
+     * @param emptySearchException
+     * @return EmptySearchDetails
+     */
+    @ExceptionHandler(EmptySearchException.class)
+    public ResponseEntity<?> handleTweetNotFoundException(EmptySearchException emptySearchException) {
+        EmptySearchDetails details = EmptySearchDetails.Builder.builder()
+                .title("Tweet Not Found")
+                .timestamp(new Date().getTime())
+                .status(HttpStatus.NOT_FOUND.value())
+                .detail(emptySearchException.getMessage())
+                .message(emptySearchException.getClass().getName())
                 .build();
         return new ResponseEntity<>(details, HttpStatus.NOT_FOUND);
     }

@@ -1,6 +1,7 @@
 package org.twitterApp.controller;
 
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -45,7 +46,8 @@ public class TwitterApiController {
         LOGGER.info("Initializing the search with parameter: " + searchTweet);
         Map<String, List<Tweet>> response = twitterApiService.getTweets(searchTweet);
            if(response == null)
-               throw new TweetNotFoundException("Tweets no founds");
+               throw new TweetNotFoundException("No tweets found!");
+        LOGGER.info("Finalizing the request with the response: " + response);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

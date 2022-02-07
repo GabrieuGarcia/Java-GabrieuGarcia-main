@@ -5,6 +5,7 @@ import com.google.api.client.http.HttpResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.twitterApp.exceptions.errors.TweetConversionException;
 import org.twitterApp.model.Tweet;
 
 import java.io.BufferedReader;
@@ -35,7 +36,12 @@ public class TwitterUtils {
         LOGGER.info("Initializing the convertion of the http response into a Tweet list");
         InputStream in = httpResponse.getContent();
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-        return convertBufferedReaderInTweets(reader);
+        try {
+            List<Tweet> tweets = convertBufferedReaderInTweets(reader);
+            return tweets;
+        } catch (TweetConversionException e) {
+             throw new TweetConversionException("It was not possibwl to convert the tweet");
+        }
     }
 
     /**
@@ -45,6 +51,7 @@ public class TwitterUtils {
      * @throws IOException
      */
     private static List<Tweet> convertBufferedReaderInTweets(BufferedReader reader) throws IOException {
+        LOGGER.info("Initializing the convertion of the Bufferd Reader into a Tweet list");
         List<Tweet> tweetList = new ArrayList<>();
         int counter = 0;
         long startTime = System.currentTimeMillis();

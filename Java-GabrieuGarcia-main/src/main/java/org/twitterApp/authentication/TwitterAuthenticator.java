@@ -44,6 +44,7 @@ public class TwitterAuthenticator {
 	private final String consumerSecret;
 
 	private HttpRequestFactory factory;
+	private OAuthCredentialsResponse requestTokenResponse;
 
 	private static final HttpTransport TRANSPORT = new NetHttpTransport();
 	private static final String AUTHORIZE_URL = "https://api.twitter.com/oauth/authorize";
@@ -56,8 +57,9 @@ public class TwitterAuthenticator {
 	 * @param consumerKey The OAuth consumer key
 	 * @param consumerSecret The OAuth consumer secret
 	 */
-	public TwitterAuthenticator(@Value("${consumer.key}") final String consumerKey,
-								@Value("${consumer.secret}") final String consumerSecret) {
+	public TwitterAuthenticator(
+			@Value("${consumer.key}") final String consumerKey,
+			@Value("${consumer.secret}") final String consumerSecret) {
 		this.consumerKey = consumerKey;
 		this.consumerSecret = consumerSecret;
 	}
@@ -115,12 +117,12 @@ public class TwitterAuthenticator {
 		requestToken.consumerKey = consumerKey;
 		requestToken.transport = TRANSPORT;
 		requestToken.signer = signer;
-
-		OAuthCredentialsResponse requestTokenResponse;
 		try {
 			requestTokenResponse = requestToken.execute();
+		} catch (TwitterAuthenticationException e) {
+			throw new TwitterAuthenticationException("Unable to aquire temporary token");
 		} catch (IOException e) {
-			throw new TwitterAuthenticationException("Unable to aquire temporary token: " + e.getMessage(), e);
+			e.printStackTrace();
 		}
 
 		logger.info("Aquired temporary token...\n");
@@ -161,6 +163,7 @@ public class TwitterAuthenticator {
 	 * @return The access token that can be used to invoke Twitter APIs
 	 */
 	private OAuthCredentialsResponse retrieveAccessTokens(final String providedPin, final OAuthHmacSigner signer, final String token) throws TwitterAuthenticationException {
+		logger.info("Getting AccessToken");
 		OAuthGetAccessToken accessToken = new OAuthGetAccessToken(ACCESS_TOKEN_URL);
 		accessToken.verifier = providedPin;
 		accessToken.consumerKey = consumerSecret;
@@ -172,9 +175,9 @@ public class TwitterAuthenticator {
 		try {
 			accessTokenResponse = accessToken.execute();
 		} catch (IOException e) {
-			throw new TwitterAuthenticationException("Unable to authorize access: " + e.getMessage(), e);
+			throw new TwitterAuthenticationException("Unable to authorize access: ");
 		}
-		logger.info("\nAuthorization was successful");
+		logger.info("Authorization was successful");
 
 		return accessTokenResponse;
 	}
